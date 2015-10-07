@@ -26,7 +26,7 @@ public class Movie implements java.io.Serializable {
     private String imdbid;
 
     @OneToMany(mappedBy = "roleId.movie", orphanRemoval = true,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Role> roles;
 
     public Movie() {

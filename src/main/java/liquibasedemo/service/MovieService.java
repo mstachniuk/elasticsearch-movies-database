@@ -16,7 +16,9 @@ public class MovieService {
 
     @Transactional
     public List<Movie> findByTitle(String name) {
-        return movieHome.findByTitle(name);
+        List<Movie> movies = movieHome.findByTitle(name);
+        movies.stream().forEach(m -> m.getRoles().size());  // read lazy roles
+        return movies;
     }
 
     @Transactional
@@ -26,5 +28,10 @@ public class MovieService {
 
     public List<Movie> findAll() {
         return movieHome.findAll();
+    }
+
+    @Transactional
+    public Movie findById(int id) {
+        return movieHome.findById(id);
     }
 }

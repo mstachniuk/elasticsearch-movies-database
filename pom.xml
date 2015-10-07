@@ -4,12 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.blogspot.mstachniuk</groupId>
-    <artifactId>liquibase-movies-database</artifactId>
+    <artifactId>elasticsearch-movies-database</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>liquibasedemo</name>
-    <description>Demo project for Liquibase</description>
+    <description>Demo project for Elasticsearch</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

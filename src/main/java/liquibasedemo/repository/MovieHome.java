@@ -84,4 +84,16 @@ public class MovieHome {
         query.setMaxResults(20);
         return query.getResultList();
     }
+
+    public List<Movie> findAll(int page, int pageSize) {
+        Query query = entityManager.createQuery("from Movie");
+        query.setFirstResult(page * pageSize);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
+    }
+
+    public long getAmountOfMovies() {
+        Query query = entityManager.createQuery("select count(*) from Movie");
+        return (long) query.getSingleResult();
+    }
 }

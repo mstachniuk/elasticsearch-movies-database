@@ -37,6 +37,10 @@ public class Movie implements java.io.Serializable {
     @Column(table = "plots", name = "plottext")
     private String plot;
 
+    @OneToMany(mappedBy = "directorid.movie", orphanRemoval = true,
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<DirectorMovie> directors;
+
     public Movie() {
     }
 
@@ -105,6 +109,14 @@ public class Movie implements java.io.Serializable {
 
     public void setPlot(String plot) {
         this.plot = plot;
+    }
+
+    public List<DirectorMovie> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(List<DirectorMovie> directors) {
+        this.directors = directors;
     }
 
     @Override

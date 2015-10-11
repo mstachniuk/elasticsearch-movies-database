@@ -3,7 +3,7 @@ package liquibasedemo.repository;
 // Generated Dec 15, 2014 12:52:59 AM by Hibernate Tools 4.3.1
 
 
-import liquibasedemo.data.Directors;
+import liquibasedemo.data.DirectorMovie;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * Home object for domain model class Directors.
  *
  * @author Hibernate Tools
- * @see liquibasedemo.data.Directors
+ * @see liquibasedemo.data.DirectorMovie
  */
 
 public class DirectorsHome {
@@ -24,7 +24,7 @@ public class DirectorsHome {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void persist(Directors transientInstance) {
+    public void persist(DirectorMovie transientInstance) {
         log.debug("persisting Directors instance");
         try {
             entityManager.persist(transientInstance);
@@ -35,7 +35,7 @@ public class DirectorsHome {
         }
     }
 
-    public void remove(Directors persistentInstance) {
+    public void remove(DirectorMovie persistentInstance) {
         log.debug("removing Directors instance");
         try {
             entityManager.remove(persistentInstance);
@@ -46,10 +46,10 @@ public class DirectorsHome {
         }
     }
 
-    public Directors merge(Directors detachedInstance) {
+    public DirectorMovie merge(DirectorMovie detachedInstance) {
         log.debug("merging Directors instance");
         try {
-            Directors result = entityManager.merge(detachedInstance);
+            DirectorMovie result = entityManager.merge(detachedInstance);
             log.debug("merge successful");
             return result;
         } catch (RuntimeException re) {
@@ -58,10 +58,10 @@ public class DirectorsHome {
         }
     }
 
-    public Directors findById(Integer id) {
+    public DirectorMovie findById(Integer id) {
         log.debug("getting Directors instance with id: " + id);
         try {
-            Directors instance = entityManager.find(Directors.class, id);
+            DirectorMovie instance = entityManager.find(DirectorMovie.class, id);
             log.debug("get successful");
             return instance;
         } catch (RuntimeException re) {

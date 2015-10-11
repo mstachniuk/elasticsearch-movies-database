@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "movies2actors", schema = "public")
-//@IdClass(RoleId.class)
 public class Role implements Serializable {
 
     @EmbeddedId

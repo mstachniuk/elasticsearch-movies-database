@@ -41,6 +41,10 @@ public class Movie implements java.io.Serializable {
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DirectorMovie> directors;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    private Rating rating;
+
     public Movie() {
     }
 
@@ -117,6 +121,14 @@ public class Movie implements java.io.Serializable {
 
     public void setDirectors(List<DirectorMovie> directors) {
         this.directors = directors;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
     @Override

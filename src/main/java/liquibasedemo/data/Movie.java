@@ -9,6 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "movies", schema = "public")
+@SecondaryTables({
+        @SecondaryTable(name = "plots", pkJoinColumns = {
+                @PrimaryKeyJoinColumn(name = "movieid", referencedColumnName = "movieid")
+        })
+})
 public class Movie implements java.io.Serializable {
 
     @Id
@@ -28,6 +33,9 @@ public class Movie implements java.io.Serializable {
     @OneToMany(mappedBy = "roleId.movie", orphanRemoval = true,
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Role> roles;
+
+    @Column(table = "plots", name = "plottext")
+    private String plot;
 
     public Movie() {
     }
@@ -89,6 +97,14 @@ public class Movie implements java.io.Serializable {
             roles = new ArrayList<>();
         }
         roles.add(role);
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
     }
 
     @Override

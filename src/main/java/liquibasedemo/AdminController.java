@@ -21,4 +21,10 @@ public class AdminController {
         logger.info("called reindexAllMovies");
         adminService.reindexAllMovies();
     }
+
+    @RequestMapping(value = "/admin/continueIndexMovies", method = RequestMethod.POST)
+    public void continueIndexMovies() {
+        logger.info("called continueIndexMovies");
+        adminService.continueIndexMovies();
+    }
 }

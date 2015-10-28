@@ -85,6 +85,7 @@ public class MovieHome {
         return query.getResultList();
     }
 
+
     public List<Movie> findAll(int page, int pageSize) {
         Query query = entityManager.createQuery("from Movie");
         query.setFirstResult(page * pageSize);

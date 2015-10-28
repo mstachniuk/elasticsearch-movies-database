@@ -18,9 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -48,13 +48,12 @@ public class AdminService {
                 .addTransportAddress(new InetSocketTransportAddress("localhost", 9300));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public void reindexAllMovies() {
         indexMovies(0);
-
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public void continueIndexMovies() {
         int maxMovieId = getMaxMovieId();
         indexMovies(maxMovieId / PAGE_SIZE);
@@ -74,7 +73,6 @@ public class AdminService {
 //        }
         SearchResponse searchResponse = client.prepareSearch("esmd")
                 .setTypes("movie")
-//                .setSearchType()
                 .setQuery(QueryBuilders.matchAllQuery())
                 .addSort(SortBuilders.fieldSort("movieid").order(SortOrder.DESC))
                 .setFrom(0)
@@ -103,7 +101,6 @@ public class AdminService {
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
-                logger.debug("response: " + response);
             });
         }
 
